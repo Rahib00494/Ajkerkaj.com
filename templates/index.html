@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ site_name }}</title>
+    <style>
+        body { font-family: Arial; margin: 0; background: #f4f7fb; color: #222; }
+        header { background: #123c69; color: white; padding: 25px 8%; }
+        .hero { text-align: center; padding: 55px 15px; background: #e5f1ff; }
+        .services { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 20px; padding: 30px 8%; }
+        .card { background: white; padding: 22px; border-radius: 12px; box-shadow: 0 2px 10px #ddd; }
+        a { color: #0876cf; text-decoration: none; }
+        .btn { display: inline-block; background: #0876cf; color: white; padding: 10px 18px; border-radius: 6px; }
+        footer { text-align: center; padding: 25px; background: #123c69; color: white; }
+    </style>
+</head>
+<body>
+<header>
+    <h2>{{ site_name }}</h2>
+    <p>{{ banner_note }}</p>
+</header>
+<section class="hero">
+    <h1>{{ hero_title }}</h1>
+    <p>{{ hero_subtitle }}</p>
+    <a class="btn" href="tel:{{ phone }}">{{ cta_text }}</a>
+</section>
+<section class="services">
+    {% for service in services %}
+    <div class="card">
+        <h2>{{ service.icon }} {{ service.title }}</h2>
+        <p>{{ service.short_desc }}</p>
+        <h3>{{ service.price }}</h3>
+        <a class="btn" href="{{ url_for('service_detail', slug=service.slug) }}">View Details</a>
+    </div>
+    {% else %}
+    <p>No services available.</p>
+    {% endfor %}
+</section>
+<footer>
+    <p>{{ footer_text }}</p>
+    <p>Contact: {{ phone }}</p>
+    <a href="{{ url_for('admin_login') }}" style="color:white">Admin Login</a>
+</footer>
+</body>
+</html>
