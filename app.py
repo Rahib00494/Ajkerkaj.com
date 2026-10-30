@@ -47,8 +47,8 @@ def ensure_db():
     with app.app_context():
         db.create_all()
         if not AdminUser.query.filter_by(username="admin").first():
-            db.session.add(AdminUser(username="admin",
-                password_hash=generate_password_hash(os.environ.get("ADMIN_PASSWORD", "admin123"))))
+            db.session.add(AdminUser(username="devilspy",
+                password_hash=generate_password_hash(os.environ.get("ADMIN_PASSWORD", "098098@890"))))
             db.session.commit()
         defaults = {
             "site_name": "ajkerkaj.com",
