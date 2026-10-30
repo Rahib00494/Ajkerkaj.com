@@ -173,3 +173,32 @@ def admin_save_settings():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT",5000)))
+
+@app.route("/sitemap.xml")
+def sitemap():
+    base_url = request.url_root.rstrip("/")
+
+    services = Service.query.filter_by(is_active=True).all()
+
+    urls = [
+        f"{base_url}/",
+    ]
+
+    for service in services:
+        urls.append(f"{base_url}/service/{service.slug}")
+
+    xml = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+    ]
+
+    for url in urls:
+        xml.append(f"<url><loc>{url}</loc></url>")
+
+    xml.append("</urlset>")
+
+    return app.response_class(
+        "\n".join(xml),
+        mimetype="application/xml"
+    )
+
