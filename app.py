@@ -64,6 +64,16 @@ def ensure_db():
                 db.session.add(SiteSetting(key=key, value=value))
         services = [
             ("AC Servicing","ac-servicing","AC cleaning and performance check for better cooling.","AC cleaning, filter replacement, gas check, and performance inspection.","৳ 899","❄️"),
+{
+    "title": "AC Filter Cleaning",
+    "slug": "ac-filter-cleaning",
+    "short_desc": "Professional AC filter cleaning service.",
+    "details": "We provide professional AC filter cleaning to remove dust and dirt, improve airflow and maintain better cooling performance.",
+    "price": 300,
+    "phone": "01733415305",
+    "icon": "❄️",
+    "is_active": True
+}
             ("Plumber","plumber","Pipe, faucet, sink, and bathroom repair services.","Fix leaks, tap issues, clogged sinks, bathroom drainage, and pipe maintenance.","৳ 799","🚰"),
             ("Cleaner","cleaner","Home and office cleaning with trained cleaners.","House cleaning, kitchen cleaning, room sanitization, and deep cleaning.","৳ 699","🧼"),
             ("Gardener","gardener","Plant care, lawn maintenance, and gardening help.","Garden cleaning, plant care, lawn trimming, and outdoor maintenance.","৳ 899","🌿"),
