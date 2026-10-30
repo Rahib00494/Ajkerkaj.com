@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ service.title }} - {{ site_name }}</title>
+<style>
+body{font-family:Arial;background:#f4f7fb;margin:0;color:#222}
+header,footer{background:#123c69;color:white;padding:22px 8%}
+main{max-width:700px;margin:45px auto;background:white;padding:30px;border-radius:12px}
+.btn{display:inline-block;background:#0876cf;color:white;padding:12px 20px;border-radius:6px;text-decoration:none}
+</style>
+</head>
+<body>
+<header><h2>{{ site_name }}</h2></header>
+<main>
+<h1>{{ service.icon }} {{ service.title }}</h1>
+<p>{{ service.short_desc }}</p>
+<p>{{ service.details }}</p>
+<h2>Price: {{ service.price }}</h2>
+<a class="btn" href="tel:{{ service.phone }}">Book Now</a>
+<p><a href="{{ url_for('index') }}">← Back to Home</a></p>
+</main>
+<footer>Contact: {{ phone }}</footer>
+</body>
+</html>
