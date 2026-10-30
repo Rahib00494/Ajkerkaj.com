@@ -64,6 +64,7 @@ def ensure_db():
                 db.session.add(SiteSetting(key=key, value=value))
         services = [
             ("AC Servicing","ac-servicing","AC cleaning and performance check for better cooling.","AC cleaning, filter replacement, gas check, and performance inspection.","৳ 899","❄️"),
+			("AC Filter Cleaning","ac-filter-cleaning","Professional AC filter cleaning service.","Professional AC filter cleaning to remove dust and dirt and improve airflow.","৳ 300","❄️"),
             ("Plumber","plumber","Pipe, faucet, sink, and bathroom repair services.","Fix leaks, tap issues, clogged sinks, bathroom drainage, and pipe maintenance.","৳ 799","🚰"),
             ("Cleaner","cleaner","Home and office cleaning with trained cleaners.","House cleaning, kitchen cleaning, room sanitization, and deep cleaning.","৳ 699","🧼"),
             ("Gardener","gardener","Plant care, lawn maintenance, and gardening help.","Garden cleaning, plant care, lawn trimming, and outdoor maintenance.","৳ 899","🌿"),
