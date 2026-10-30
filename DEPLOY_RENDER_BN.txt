@@ -1,0 +1,19 @@
+Render-এ Publish করার নিয়ম
+
+1) GitHub-এ নতুন repository তৈরি করে এই ফোল্ডারের সব ফাইল upload করুন।
+2) Render.com-এ GitHub দিয়ে sign in করুন। New + > Web Service নির্বাচন করে repository Connect করুন।
+3) সেটিংস:
+   Language: Python 3
+   Build Command: pip install -r requirements.txt
+   Start Command: gunicorn app:app
+   Instance Type: Free (শুধু পরীক্ষা/ডেমোর জন্য)
+4) Advanced > Environment Variables-এ যোগ করুন:
+   SECRET_KEY = নিজে তৈরি করা দীর্ঘ, অনুমান করা কঠিন secret
+   ADMIN_PASSWORD = নতুন শক্তিশালী admin password
+5) Create Web Service চাপুন। Deploy শেষ হলে Render-এর দেওয়া onrender.com লিংক খুলুন।
+
+সতর্কতা:
+- GitHub-এ কখনো password বা SECRET_KEY লিখবেন না।
+- ডিফল্ট admin password admin123 ব্যবহার করবেন না।
+- এই প্রজেক্ট SQLite ব্যবহার করে; Render-এর Free service-এ local file স্থায়ী নাও থাকতে পারে। বাস্তব ব্যবহারকারীর তথ্য রাখার আগে persistent database/storage সেটআপ করুন।
+- Free service নিষ্ক্রিয় থাকলে sleep করতে পারে; প্রথমবার খুলতে কিছুটা সময় লাগতে পারে।
