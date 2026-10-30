@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Dashboard</title>
+<style>
+body{font-family:Arial;background:#f4f7fb;margin:0;padding:20px;color:#222}
+.container{max-width:900px;margin:auto}
+.card{background:white;padding:22px;margin:18px 0;border-radius:12px}
+input,textarea{box-sizing:border-box;width:100%;padding:10px;margin:7px 0}
+button{background:#0876cf;color:white;padding:10px 16px;border:0;border-radius:5px;cursor:pointer}
+.delete{background:#c62828}
+a{color:#0876cf}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Admin Dashboard</h1>
+<p><a href="{{ url_for('index') }}">View Website</a> |
+<a href="{{ url_for('admin_logout') }}">Logout</a></p>
+
+<div class="card">
+<h2>Website Settings</h2>
+<form method="POST" action="{{ url_for('admin_save_settings') }}">
+<label>Site Name</label>
+<input name="site_name" value="{{ site_name }}">
+<label>Hero Title</label>
+<input name="hero_title" value="{{ hero_title }}">
+<label>Hero Subtitle</label>
+<textarea name="hero_subtitle">{{ hero_subtitle }}</textarea>
+<label>Phone</label>
+<input name="phone" value="{{ phone }}">
+<label>Banner Note</label>
+<input name="banner_note" value="{{ banner_note }}">
+<label>Footer Text</label>
+<input name="footer_text" value="{{ footer_text }}">
+<label>Button Text</label>
+<input name="cta_text" value="{{ cta_text }}">
+<button type="submit">Save Settings</button>
+</form>
+</div>
+
+<div class="card">
+<h2>Add New Service</h2>
+<form method="POST" action="{{ url_for('admin_add_service') }}">
+<input name="title" placeholder="Service Title" required>
+<input name="slug" placeholder="Slug (example: ac-repair)">
+<input name="short_desc" placeholder="Short Description" required>
+<textarea name="details" placeholder="Full Details" required></textarea>
+<input name="price" placeholder="Price" required>
+<input name="phone" placeholder="Phone">
+<input name="icon" placeholder="Icon">
+<button type="submit">Add Service</button>
+</form>
+</div>
+
+<div class="card">
+<h2>Manage Services</h2>
+{% for service in services %}
+<div style="border-bottom:1px solid #ddd;padding:15px 0">
+<h3>{{ service.icon }} {{ service.title }}</h3>
+<p>{{ service.short_desc }}</p>
+<p>Price: {{ service.price }}</p>
+
+<form method="POST" action="{{ url_for('admin_edit_service',service_id=service.id) }}">
+<input name="title" value="{{ service.title }}" required>
+<input name="slug" value="{{ service.slug }}" required>
+<input name="short_desc" value="{{ service.short_desc }}" required>
+<textarea name="details" required>{{ service.details }}</textarea>
+<input name="price" value="{{ service.price }}" required>
+<input name="phone" value="{{ service.phone }}">
+<input name="icon" value="{{ service.icon }}">
+<label><input type="checkbox" name="is_active" style="width:auto" {% if service.is_active %}checked{% endif %}> Active</label>
+<button type="submit">Update Service</button>
+</form>
+
+<form method="POST" action="{{ url_for('admin_delete_service',service_id=service.id) }}" onsubmit="return confirm('Delete this service?')">
+<button class="delete" type="submit">Delete Service</button>
+</form>
+</div>
+{% else %}
+<p>No services found.</p>
+{% endfor %}
+</div>
+</div>
+</body>
+</html>
