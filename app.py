@@ -171,6 +171,12 @@ def admin_save_settings():
         set_setting(key, request.form.get(key,get_setting(key)).strip())
     flash("Settings updated.", "success")
     return redirect(url_for("admin_dashboard"))
+@app.route("/robots.txt")
+def robots():
+    return """User-agent: *
+Allow: /
+Sitemap: https://ajkerkaj-com-1.onrender.com/sitemap.xml
+""", 200, {"Content-Type": "text/plain"}
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT",5000)))
